@@ -83,16 +83,6 @@ button {
     letter-spacing: 0.04em;
 }
 
-h3 {
-    font-family: var(--font-family);
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 133%;
-    letter-spacing: 0.04em;
-    color: #2e2f42;
-    margin-bottom: 4px;
-}
-
 p {
     font-family: var(--font-family);
     font-weight: 400;
@@ -111,43 +101,78 @@ p {
     justify-content: center;
 }
 
-.gallery-item {
-    border: 1px solid #808080;
+.photo {
+    width: 360px;
+    height: 200px;
 }
 
 .gallery-image {
     width: 360px;
-    height: 200px;
-    margin-bottom: 5px;
+    height: 152px;
+    box-sizing: border-box;
+    object-fit: cover;
+    border-top: 1px solid #808080;
+    border-left: 1px solid #808080;
+    border-right: 1px solid #808080;
 }
 
-.image-description {
+.description {
     display: flex;
-    gap: 32px;
-    justify-content: center;
+    padding-left: 12px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin: auto;
+    border-bottom: 1px solid #808080;
+    border-left: 1px solid #808080;
+    border-right: 1px solid #808080;
 }
 
-.decsription-item {
+.description-item {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 1.33333;
+    letter-spacing: 0.04em;
+    color: #2e2f42;
     text-align: center;
 }
 
 .loader {
-    width: 48px;
-    height: 48px;
-    border: 5px solid #FFF;
-    border-bottom-color: transparent;
-    border-radius: 50%;
-    display: inline-block;
+    color: black;
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    font-family: Arial, Helvetica, sans-serif;
     box-sizing: border-box;
-    animation: rotation 1s linear infinite;
 }
 
-@keyframes rotation {
+.loader::after {
+    content: '';
+    width: 5px;
+    height: 5px;
+    background: currentColor;
+    position: absolute;
+    bottom: 10px;
+    right: -5px;
+    box-sizing: border-box;
+    animation: animloader 1s linear infinite;
+}
+
+@keyframes animloader {
     0% {
-        transform: rotate(0deg);
+        box-shadow: 10px 0 rgba(255, 255, 255, 0), 20px 0 rgba(255, 255, 255, 0);
+    }
+
+    50% {
+        box-shadow: 10px 0 white, 20px 0 rgba(255, 255, 255, 0);
     }
 
     100% {
-        transform: rotate(360deg);
+        box-shadow: 10px 0 white, 20px 0 white;
     }
 }
