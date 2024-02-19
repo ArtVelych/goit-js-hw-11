@@ -20,22 +20,14 @@ function fetchPhotos(url) {
     loader.style.display = 'block';
     gallery.innerHTML = '';
 
-  return new Promise((resolve, reject) => {
-    fetch(url)
-      .then(res => res.json())
-      .then(data => {
-        setTimeout(() => {
-          renderPhotos(data.hits);
-          loader.style.display = 'none';
-          resolve(data.hits);
-        }, 1000);
-      })
-      .catch(error => {
-        console.log('Error fetching data:', error);
-        loader.style.display = 'none';
-        reject(error);
-      });
-  });
+  return fetch(url)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(response.status);
+      }
+      loader.style.display = 'none';
+      return response.json();
+    });
 }
 
 export {

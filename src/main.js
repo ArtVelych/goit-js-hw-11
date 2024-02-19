@@ -20,7 +20,13 @@ function onFormSubmit(e) {
 
   const url = pixabay.buildApiUrl(searchQuery);
 
-    pixabay.fetchPhotos(url);
+  pixabay.fetchPhotos(url)
+      .then(data => {
+          galleryToRender.renderPhotos(data.hits);
+      })
+      .catch(error => {
+        console.log('Error fetching data:', error);
+      });
     
     form.reset();
 }
